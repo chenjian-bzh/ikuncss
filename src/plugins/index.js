@@ -8,10 +8,14 @@ module.exports = (opts = {}) => {
     postcssPlugin: 'ikun',
 
     Rule(rule, { Declaration }) {
-      console.log('rule: ', rule.selector);
       if (rule.selector === '.ikun') {
-        const delc = new Declaration({ prop: 'background-color', value: 'red' });
-        rule.append(delc);
+        console.log('rule: ', rule.selector);
+        const delc1 = new Declaration({ prop: 'background-color', value: 'red' });
+        const delc2 = new Declaration({ prop: 'width', value: '200px' });
+        const delc3 = new Declaration({ prop: 'height', value: '200px' });
+        rule.append(delc1);
+        rule.append(delc2);
+        rule.append(delc3);
       }
     }
   }

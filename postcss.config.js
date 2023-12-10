@@ -1,5 +1,14 @@
+// module.exports = {
+//   plugins: {
+//     tailwindcss: {}
+//   },
+// }
+
+
 module.exports = {
   plugins: {
-    tailwindcss: {}
+    ikuncss: {
+      content: "<div class='ikun'></div>"
+    }
   },
 }

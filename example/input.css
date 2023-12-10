@@ -1,6 +1,6 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 .icon--square {
   width: 100px;
@@ -9,5 +9,8 @@
   background-image: url("https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d37aa72922c547c3915934681dd88b80~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp?");
 }
 
-.ikun {
+/* .ikun {
+} */
+
+.ttt {
 }

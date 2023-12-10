@@ -1,5 +1,6 @@
-const findAtConfigPath = require('./lib/findAtConfigPath');
-const processFeatures = require('./lib/processFeatures');
+const { log } = require('./utils/debug');
+const findAtConfigPath = require('./utils/findAtConfigPath');
+const processFeatures = require('./utils/processFeatures');
 
 /**
  * @type {import('postcss').PluginCreator}
@@ -12,7 +13,7 @@ module.exports = (config) => {
 
     plugins: [
       function (root) {
-        console.log('\n ---- ikun start compile!');
+        log('\n ---- ikun start compile!');
         console.time('TIME TOTAL');
         return root
       },
@@ -21,7 +22,7 @@ module.exports = (config) => {
         await processFeatures(config, root, result);
       },
       function (root) {
-        console.log('\n ---- ikun done.');
+        log('\n ---- ikun done.');
         console.timeEnd('TIME TOTAL');
         return root;
       }

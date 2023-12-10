@@ -3,6 +3,7 @@ const { utilitiesName } = require('./normalizeDirectives');
 const { parseCandidateStrings, IO, Parsing } = require('../oxide/index');
 const { generateRules } = require('./generateRules');
 const postcss = require('postcss');
+const { log } = require('./debug')
 
 
 function cloneNodes(nodes, source = undefined, raws = undefined) {
@@ -47,16 +48,16 @@ async function expandAtRules(context, root, result) {
     };
 
     root.walkAtRules(rule => {
-        console.log('---- rule.name: ', rule.name)
-        console.log('---- is ikuncss:', rule.name === 'ikuncss')
+        log('---- rule.name: ', rule.name)
+        log('---- is ikuncss:', rule.name === 'ikuncss')
 
         if (rule.name === 'ikuncss') {
-            console.log(('---- rule.params : ', rule.params))
             layerNodes[rule.params] = rule;
-            console.log(('---- layerNodes : ', layerNodes))
         }
     });
 
+    log('layerNodes:');
+    log(layerNodes);
 
     if (Object.values(layerNodes).every(v => v === null)) {
         return root;

@@ -1,18 +1,20 @@
 {
   "name": "ikuncss",
-  "version": "1.0.1",
-  "main": "src/index.js",
+  "version": "1.0.4",
+  "main": "lib/index.js",
   "license": "MIT",
   "files": [
     "lib"
   ],
   "scripts": {
     "test2": "postcss ./example/test.css -o dist/output2.css",
-    "test": "node example/compile.js",
+    "test": "DEBUG=ikuncss node example/compile.js",
     "build": "npm run build:js",
     "build:js": "swc src --out-dir lib --copy-files --delete-dir-on-start"
   },
   "dependencies": {
+    "@types/debug": "^4.1.12",
+    "debug": "^4.3.4",
     "glob": "^10.3.10",
     "postcss": "^8.4.31",
     "postcss-js": "^4.0.1",
@@ -21,8 +23,8 @@
   "devDependencies": {
     "@swc/cli": "^0.1.63",
     "@swc/core": "^1.3.100",
-    "@types/node": "^20.10.1",
     "@types/glob": "^8.1.0",
+    "@types/node": "^20.10.1",
     "@types/postcss-js": "^4.0.4",
     "@types/postcss-nested": "^4.2.3",
     "postcss-cli": "^10.1.0"

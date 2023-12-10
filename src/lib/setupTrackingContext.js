@@ -1,11 +1,31 @@
 const { corePlugins } = require('../corePlugins.js');
 const parseObjectStyles = require('./parseObjectStyle.js');
+const { glob } = require('glob');
+const { readFile } = require('fs/promises')
+const { extname } = require('path')
 
-function resolveChangedContent(context, config) {
-    context.changedContent = [{
-        content: config.content,
-        extension: 'html'
-    }];
+async function resolveChangedContent(context, config) {
+
+    let _c = config.content;
+
+    const paths = await glob(_c);
+
+    if (paths.length === 0) {
+        _c = {
+            content: _c,
+            extension: 'html'
+        }
+        context.changedContent = Array.isArray(_c) ? _c : [_c]
+    } else {
+        const _cs = await Promise.all(paths.map(async (p) => {
+            return {
+                content: await readFile(p, 'utf-8'),
+                extension: extname(p).replace('\.', ''),
+            }
+        }))
+        context.changedContent = _cs;
+    }
+
     return context;
 }
 
@@ -27,7 +47,7 @@ function resolveCadidateRuleMap(context) {
  * @param {*} ikunDirectives 
  * @returns 
  */
-function setupTrackingContext(root, config, ikunDirectives) {
+async function setupTrackingContext(root, config, ikunDirectives) {
     const context = {
         root,
         ikunDirectives,
@@ -37,7 +57,7 @@ function setupTrackingContext(root, config, ikunDirectives) {
         ruleCache: new Set(), //html或者 js 文件中使用到的 class
     };
 
-    resolveChangedContent(context, config)
+    await resolveChangedContent(context, config)
     resolveCadidateRuleMap(context)
 
     return context;

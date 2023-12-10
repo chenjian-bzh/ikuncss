@@ -1,11 +1,14 @@
-const { writeFile, mkdir, rmdirSync } = require('fs');
+const { writeFile, mkdir, rmdirSync, existsSync } = require('fs');
 const postcss = require('postcss');
 const ikun = require('../src/index');
 
-rmdirSync('dist', { force: true, recursive: true });
+if (existsSync('dist')) {
+    rmdirSync('dist', { force: true, recursive: true });
+}
 
 postcss([ikun({
-    content: "<div><p class='.ikun'></p></div>",
+    // content: "<div><p class='ikun'></p></div>",
+    content: "example/**/*.{html,jsx}"
 })]).process(`@ikuncss utilities;
 
 #root {

@@ -1,7 +1,7 @@
 const utilitiesName = 'utilities'
 
 /**
- * 
+ * 解析入口 css 文件引入的 ikuncss 指令集
  * @param {import("postcss").Root} root
  */
 async function normalizeDirectives(root) {

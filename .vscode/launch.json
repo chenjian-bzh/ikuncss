@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "启动程序",
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["test"]
+      "runtimeArgs": ["test3"]
     }
   ]
 }

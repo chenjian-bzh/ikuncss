@@ -1,4 +1,4 @@
-const { corePlugins } = require('../corePlugins.js');
+const { resolvePlugins } = require('../corePlugins.js');
 const parseObjectStyles = require('./parseObjectStyle.js');
 const { glob } = require('glob');
 const { readFile } = require('fs/promises')
@@ -30,12 +30,8 @@ async function resolveChangedContent(context, config) {
 }
 
 function resolveCadidateRuleMap(context) {
-    const { candidateRuleMap } = context;
 
-    Object.keys(corePlugins).forEach(key => {
-        const rule = parseObjectStyles(corePlugins[key]);
-        candidateRuleMap.set(key, rule);
-    });
+    resolvePlugins(context);
 
     return context;
 }

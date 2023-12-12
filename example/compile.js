@@ -9,21 +9,7 @@ if (existsSync('dist')) {
 postcss([ikun({
     // content: "<div><p class='ikun'></p></div>",
     content: "example/**/*.{html,jsx}"
-})]).process(`@ikuncss utilities;
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}`, {
+})]).process(`@ikuncss utilities;`, {
     from: 'src/test.css',
     to: 'dist/output.css'
 }).then(result => {

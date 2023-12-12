@@ -82,24 +82,23 @@ async function expandAtRules(context, root, result) {
     );
 
     // 根据解析结果, 匹配出 ikun 原子类
-    const styleSheet = generateRules(sortCandidates, context);
+    const rules = await generateRules(sortCandidates, context);
+
+    console.log(' ----- rules: ', rules)
 
     //添加原子类到最终结果
-    let {
-        utilities: utilityNodes,
-    } = styleSheet;
-
     if (layerNodes[utilitiesName]) {
-        const r = postcss.rule({ selector: '.ikun' });
 
-        utilityNodes.forEach(n => {
-            r.append(n);
-        })
+        for (let rule of rules) {
+            const rule_node = postcss.rule({ selector: rule.selector });
 
-        layerNodes[utilitiesName].before(r);
-        // layerNodes[utilitiesName].before(cloneNodes([...utilityNodes], layerNodes.utilities.source, {
-        //     layer: 'utilities',
-        // }));
+            rule.delcs.forEach(delc => {
+                rule_node.append(delc);
+            });
+
+            layerNodes[utilitiesName].parent.append(rule_node);
+        }
+
         layerNodes[utilitiesName].remove();
     }
 

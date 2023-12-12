@@ -1,6 +1,6 @@
 {
   "name": "ikuncss",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "lib/index.js",
   "license": "MIT",
   "files": [
@@ -8,9 +8,10 @@
   ],
   "scripts": {
     "test2": "postcss ./example/test.css -o dist/output2.css",
-    "test": "DEBUG=ikuncss node example/compile.js",
+    "test3": "DEBUG=ikuncss node example/compile.js",
     "build": "npm run build:js",
-    "build:js": "swc src --out-dir lib --copy-files --delete-dir-on-start"
+    "build:js": "swc src --out-dir lib --copy-files --delete-dir-on-start",
+    "test": "jasmine"
   },
   "dependencies": {
     "@types/debug": "^4.1.12",
@@ -27,6 +28,8 @@
     "@types/node": "^20.10.1",
     "@types/postcss-js": "^4.0.4",
     "@types/postcss-nested": "^4.2.3",
+    "jasmine": "^5.1.0",
+    "jasmine-snapshot": "^1.8.1",
     "postcss-cli": "^10.1.0"
   }
 }

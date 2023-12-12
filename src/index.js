@@ -13,7 +13,7 @@ module.exports = (config) => {
 
     plugins: [
       function (root) {
-        log('\n ---- ikun start compile!');
+        log('\n ---- ikun start compile.');
         console.time('TIME TOTAL');
         return root
       },

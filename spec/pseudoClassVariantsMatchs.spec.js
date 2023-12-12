@@ -2,7 +2,7 @@ const { pseudoClassVariantsMatchs } = require("../src/utils/generateRules");
 
 describe('test pseudoClassVariantsMatchs function', () => {
 
-    it('without pseudoClass', () => {
+    test('without pseudoClass', () => {
         const t = pseudoClassVariantsMatchs('ikun');
         expect(t).toEqual({
             matcher: 'ikun',
@@ -10,7 +10,7 @@ describe('test pseudoClassVariantsMatchs function', () => {
         });
     })
 
-    it('with pseudoClass', () => {
+    test('with pseudoClass', () => {
         const t = pseudoClassVariantsMatchs('hover:active:ikun');
         expect(t).toEqual({
             matcher: 'ikun',

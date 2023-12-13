@@ -1,11 +1,16 @@
 {
   "name": "ikuncss",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "main": "lib/index.js",
   "license": "MIT",
   "files": [
     "lib"
   ],
+  "homepage": "https://github.com/chenjian-bzh/ikuncss",
+  "author": {
+    "name": "chenjian-bzh",
+    "url": "https://github.com/chenjian-bzh"
+  },
   "scripts": {
     "test2": "postcss ./example/test.css -o dist/output2.css",
     "test3": "DEBUG=ikuncss node example/compile.js",

@@ -1,15 +1,80 @@
-# ikun postcss plugin
+# ikuncss
 
-## utilities
+## 安装
 
-1. ikun
-
-2. border
-
+```shell
+npm install ikuncss
 ```
-border-[all|top|bottom|left|right]-c[不带#的颜色 hex="fff"]-w[border-width="1"]-r[border-radius="0"]-z[z-index="auto"]-o[opacity="1"]
-    例子 1：border-top-c222-w2-r10-z1000-o3 ==> 颜色为 #222，宽度为 2px，圆角为 10px，层级为 1000，透明度为 0.3 的上边框
-    例子 2：border-bottom-c222 ===> 颜色为 #222，宽度为 1px，圆角为 0，层级为 auto，透明度是 1 的下边框
-    例子 3：border-all-r16-c333 ===> 颜色为 #333，宽度为 1px，圆角为 16px，层级为 auto，透明度是 1 的全边框
 
+## 使用
+
+### 1. 使用 create-ikuncss 模版
+
+```shell
+npm init ikuncss@latest
+```
+
+### 2. vite 项目中使用
+
+postcss.config.js 文件添加配置
+
+```js
+export default {
+  plugins: {
+    ikuncss: {
+      content: "src/**/*.{html,jsx}",
+    },
+  },
+};
+```
+
+css 入口文件引入工具类
+
+```css
+@ikuncss utilities;
+```
+
+html 或者 jsx 文件中使用
+
+```jsx
+<div className="card">
+  <div className="ikun"></div>
+  <div className="hover:ikun">hover me</div>
+  <div className="hover:active:ikun">hover me</div>
+</div>
+```
+
+编译， 如果使用 vite， 直接运行 vite dev server
+
+```shell
+vite
+```
+
+如果使用 postcss cli
+
+```shell
+postcss ./input.css -o dist/output.css
+```
+
+### 3. 使用 posstcss api
+
+postcss 传入插件及配置
+
+```js
+postcss([
+  ikun({
+    content: "example/**/*.{html,jsx}",
+  }),
+])
+  .process(`@ikuncss utilities;`, {
+    from: "src/input.css",
+    to: "dist/output.css",
+  })
+  .then((result) => {
+    mkdir("dist", () => {
+      writeFile("dist/output.css", result.css, (err) => {
+        err ? console.error(err) : console.log("success.");
+      });
+    });
+  });
 ```
